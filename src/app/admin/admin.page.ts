@@ -3,17 +3,15 @@ import { Item } from '../item.model';
 import { ItemsService } from '../items.service';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.page.html',
-  styleUrls: ['./home.page.scss'],
+  selector: 'app-admin',
+  templateUrl: './admin.page.html',
+  styleUrls: ['./admin.page.scss'],
 })
-export class HomePage implements OnInit {
+export class AdminPage implements OnInit {
   items: Array<Item>;
-  list: boolean = true;
   constructor(private itemsService: ItemsService) {}
 
   ngOnInit() {}
-
   ionViewWillEnter() {
     this.items = this.itemsService.getAllItems();
   }

@@ -1,20 +1,56 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
-  </ion-toolbar>
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-buttons slot="start">
+            <ion-menu-button menu="sidemenu"></ion-menu-button>
+        </ion-buttons>
+        <ion-title>Home</ion-title>
+        <ion-buttons slot="end">
+            <ion-button (click)="list = !list">
+                <ion-icon *ngIf="list; else grid" name="grid" slot="icon-only"></ion-icon>
+                <ng-template #grid>
+                    <ion-icon name="list" slot="icon-only"></ion-icon>
+                </ng-template>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+<ion-content>
+    <ion-grid>
+        <ion-row class="ion-justify-content-center">
+            <ion-col size="12" size-md="8" *ngIf="list; else gridItems">
+                <ion-list>
+                    <ion-item *ngFor="let item of items" [routerLink]="['./',item.id]">
+                        <ion-thumbnail slot="start">
+                            <ion-img width="200" height="200" [src]="item.image[0]"></ion-img>
+                        </ion-thumbnail>
+                        <ion-label>
+                            <h3>{{item.brand + ' '+item.model}}</h3>
+                            <p>{{item.price | currency:'Rp'}}</p>
+                            <p>Available : {{item.stock}}</p>
+                        </ion-label>
+                    </ion-item>
+                </ion-list>
+            </ion-col>
+            <ng-template #gridItems>
+                <ion-col size="12">
+                    <ion-grid>
+                        <ion-row class="ion-justify-content-center">
+                            <ion-col size="6" size-md="4" *ngFor="let item of items" class="ion-justify-content-end"
+                                [routerLink]="['./',item.id]">
+                                <ion-card class="ion-text-center">
+                                    <img [src]="item.image[0]" />
+                                    <ion-card-content class="ion-text-left">
+                                        <h2>{{item.brand + ' '+item.model}}</h2>
+                                        <p>{{item.price | currency:'Rp'}}</p>
+                                        <p>Available : {{item.stock}}</p>
+                                    </ion-card-content>
+                                </ion-card>
+                            </ion-col>
+                        </ion-row>
+                    </ion-grid>
+                </ion-col>
+            </ng-template>
+        </ion-row>
+    </ion-grid>
 </ion-content>
