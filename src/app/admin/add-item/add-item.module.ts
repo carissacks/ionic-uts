@@ -4,17 +4,17 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { AddContactPageRoutingModule } from './add-contact-routing.module';
+import { AddItemPageRoutingModule } from './add-item-routing.module';
 
-import { AddContactPage } from './add-contact.page';
+import { AddItemPage } from './add-item.page';
 
 @NgModule({
   imports: [
     CommonModule,
     ReactiveFormsModule,
     IonicModule,
-    AddContactPageRoutingModule,
+    AddItemPageRoutingModule,
   ],
-  declarations: [AddContactPage],
+  declarations: [AddItemPage],
 })
-export class AddContactPageModule {}
+export class AddItemPageModule {}

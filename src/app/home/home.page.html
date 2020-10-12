@@ -20,9 +20,9 @@
         <ion-row class="ion-justify-content-center">
             <ion-col size="12" size-md="8" *ngIf="list; else gridItems">
                 <ion-list>
-                    <ion-item *ngFor="let item of items" [routerLink]="['./',item.id]">
+                    <ion-item *ngFor="let item of items" [routerLink]="['../detail/',item.id]">
                         <ion-thumbnail slot="start">
-                            <ion-img width="200" height="200" [src]="item.image[0]"></ion-img>
+                            <ion-img width="200" height="200" [src]="item.images[0]"></ion-img>
                         </ion-thumbnail>
                         <ion-label>
                             <h3>{{item.brand + ' '+item.model}}</h3>
@@ -35,11 +35,11 @@
             <ng-template #gridItems>
                 <ion-col size="12">
                     <ion-grid>
-                        <ion-row class="ion-justify-content-center">
+                        <ion-row>
                             <ion-col size="6" size-md="4" *ngFor="let item of items" class="ion-justify-content-end"
-                                [routerLink]="['./',item.id]">
+                                [routerLink]="['../detail/',item.id]">
                                 <ion-card class="ion-text-center">
-                                    <img [src]="item.image[0]" />
+                                    <img [src]="item.images[0]" />
                                     <ion-card-content class="ion-text-left">
                                         <h2>{{item.brand + ' '+item.model}}</h2>
                                         <p>{{item.price | currency:'Rp'}}</p>

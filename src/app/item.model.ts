@@ -2,7 +2,7 @@ type BaseItem = {
   id: string;
   brand: string;
   model: string;
-  image: Array<string>;
+  images: Array<string>;
   stock: number;
   price: number;
   type: 'CPU' | 'RAM' | 'MOTHERBOARD' | 'GPU';

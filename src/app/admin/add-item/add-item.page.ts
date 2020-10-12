@@ -4,11 +4,11 @@ import { NavController } from '@ionic/angular';
 import { ItemsService } from 'src/app/items.service';
 
 @Component({
-  selector: 'app-add-contact',
-  templateUrl: './add-contact.page.html',
-  styleUrls: ['./add-contact.page.scss'],
+  selector: 'app-add-item',
+  templateUrl: './add-item.page.html',
+  styleUrls: ['./add-item.page.scss'],
 })
-export class AddContactPage implements OnInit {
+export class AddItemPage implements OnInit {
   addNewContactForm: FormGroup;
 
   constructor(
@@ -60,7 +60,7 @@ export class AddContactPage implements OnInit {
       id: '0',
       brand,
       model,
-      image: images,
+      images,
       stock,
       price,
       type,

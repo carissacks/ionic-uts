@@ -5,7 +5,7 @@
     </ion-buttons>
     <ion-title>Admin</ion-title>
     <ion-buttons slot="end">
-      <ion-button [routerLink]="['./add-contact']">
+      <ion-button [routerLink]="['./add']">
         <ion-icon name="add" slot="icon-only"></ion-icon>
       </ion-button>
     </ion-buttons>
@@ -21,19 +21,19 @@
           <ion-item-sliding *ngFor="let item of items" lines="inset" #slidingItem>
             <ion-item-options side="start">
               <ion-item-option color="primary">
-                <ion-icon name="create" slot="icon-only" (click)="setPriority(item, slidingItem)">
+                <ion-icon name="create" slot="icon-only" [routerLink]="['/edit/',item.id]">
                 </ion-icon>
               </ion-item-option>
             </ion-item-options>
             <ion-item-options side="end">
-              <ion-item-option color="danger">
-                <ion-icon name="trash" slot="icon-only" (click)="setPriority(item, slidingItem)">
+              <ion-item-option color="danger" (click)="showDeleteAlert(item, slidingItem)">
+                <ion-icon name="trash" slot="icon-only">
                 </ion-icon>
               </ion-item-option>
             </ion-item-options>
-            <ion-item>
+            <ion-item [routerLink]="['../detail/',item.id]">
               <ion-thumbnail slot="start">
-                <ion-img width="200" height="200" [src]="item.image[0]"></ion-img>
+                <ion-img width="200" height="200" [src]="item.images[0]"></ion-img>
               </ion-thumbnail>
               <ion-label>
                 <h3>{{item.brand + ' '+item.model}}</h3>

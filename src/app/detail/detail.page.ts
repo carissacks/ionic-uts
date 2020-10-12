@@ -11,6 +11,8 @@ import { ItemsService } from 'src/app/items.service';
 export class DetailPage implements OnInit {
   item: Item;
   content = '';
+  sliderOptions = { autoplay: true };
+
   constructor(
     private itemsService: ItemsService,
     private activatedRoute: ActivatedRoute
@@ -23,36 +25,33 @@ export class DetailPage implements OnInit {
     console.log(itemId);
     this.item = this.itemsService.getItem(itemId);
 
-    const { id, brand, model, price, stock, image, ...otherProps } = this.item;
+    const { id, brand, model, price, stock, images, ...otherProps } = this.item;
 
     for (const [key, value] of Object.entries(otherProps)) {
       this.content = this.content + '<p>';
       switch (key) {
         case 'baseClock': {
-          this.content = this.content + 'Base Clock : ' + value + ' GHz';
+          this.content = this.content + `Base Clock : ${value} GHz`;
           break;
         }
         case 'boostClock': {
-          this.content = this.content + 'Boost Clock : ' + value + ' GHz';
+          this.content = this.content + `Boost Clock : ${value} GHz`;
           break;
         }
         case 'speed': {
           this.content =
-            this.content + this.capitalize(key) + ' : ' + value + ' MHz';
+            this.content + `${this.capitalize(key)} : ${value} MHz`;
           break;
         }
         case 'size': {
-          this.content =
-            this.content + this.capitalize(key) + ' : ' + value + ' Gb';
+          this.content = this.content + `${this.capitalize(key)} : ${value} Gb`;
           break;
         }
         default: {
-          this.content = this.content + this.capitalize(key) + ' : ' + value;
+          this.content = this.content + `${this.capitalize(key)} : ${value}`;
         }
       }
       this.content = this.content + '</p>';
     }
-
-    console.log(this.content);
   }
 }

@@ -9,12 +9,13 @@ import { ItemsService } from '../items.service';
 })
 export class HomePage implements OnInit {
   items: Array<Item>;
-  list: boolean = true;
+  list = true;
   constructor(private itemsService: ItemsService) {}
 
   ngOnInit() {}
 
   ionViewWillEnter() {
-    this.items = this.itemsService.getAllItems();
+    const allItems = this.itemsService.getAllItems();
+    this.items = allItems.filter(({ stock }) => stock > 0);
   }
 }

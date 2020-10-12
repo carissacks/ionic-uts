@@ -6,12 +6,17 @@ import { AdminPage } from './admin.page';
 const routes: Routes = [
   {
     path: '',
-    component: AdminPage
+    component: AdminPage,
   },
   {
-    path: 'add-contact',
-    loadChildren: () => import('./add-contact/add-contact.module').then( m => m.AddContactPageModule)
-  }
+    path: 'add',
+    loadChildren: () =>
+      import('./add-item/add-item.module').then((m) => m.AddItemPageModule),
+  },
+  {
+    path: 'edit-item',
+    loadChildren: () => import('./edit-item/edit-item.module').then( m => m.EditItemPageModule)
+  },
 ];
 
 @NgModule({
