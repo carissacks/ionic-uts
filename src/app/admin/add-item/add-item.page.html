@@ -11,7 +11,7 @@
   <ion-grid class="ion-padding">
     <ion-row class="ion-justify-content-center ion-align-items-center">
       <ion-col size="12" size-md="8">
-        <form [formGroup]="addNewContactForm" (ngSubmit)="onSubmit()">
+        <form [formGroup]="addNewItemForm">
           <ion-list>
             <ion-item>
               <ion-label position="floating">Brand</ion-label>
@@ -24,7 +24,12 @@
             </ion-item>
 
             <ion-item>
-              <ion-label>Type</ion-label>
+              <ion-label position="floating">Type</ion-label>
+              <ion-select placeholder="Select item type" formControlName="type">
+                <ion-select-option *ngFor="let itemType of types"
+                  >{{itemType}}</ion-select-option
+                >
+              </ion-select>
             </ion-item>
 
             <ion-item>
@@ -41,19 +46,68 @@
               <ion-label position="floating">Stock</ion-label>
               <ion-input type="number" formControlName="stock"></ion-input>
             </ion-item>
-
-            <ion-item>
-              <ion-label><h2>Product Detail</h2></ion-label>
-            </ion-item>
-
-            <ion-button
-              type="submit"
-              expand="full"
-              [disabled]="addNewContactForm.invalid"
-              >Save Item</ion-button
-            >
           </ion-list>
         </form>
+
+        <form *ngIf="selectedType !== 'GPU'" [formGroup]="productDetailForm">
+          <ion-label class="ion-text-center"
+            ><h2 class="title">Product Detail</h2></ion-label
+          >
+          <ion-list *ngIf="selectedType==='CPU'; else ram">
+            <ion-item>
+              <ion-label position="floating">Base Clock</ion-label>
+              <ion-input type="number" formControlName="baseClock"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label position="floating">Boost Clock</ion-label>
+              <ion-input type="number" formControlName="boostClock"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label position="floating">Core</ion-label>
+              <ion-input type="number" formControlName="core"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label position="floating">Thread</ion-label>
+              <ion-input type="number" formControlName="thread"></ion-input>
+            </ion-item>
+          </ion-list>
+
+          <ng-template #ram>
+            <ion-list *ngIf="selectedType==='RAM'; else motherboard">
+              <ion-item>
+                <ion-label position="floating">Speed</ion-label>
+                <ion-input type="number" formControlName="speed"></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-label position="floating">Size</ion-label>
+                <ion-input type="number" formControlName="size"></ion-input>
+              </ion-item>
+            </ion-list>
+          </ng-template>
+
+          <ng-template #motherboard>
+            <ion-list>
+              <ion-item>
+                <ion-label position="floating">Chipset</ion-label>
+                <ion-input type="string" formControlName="chipset"></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-label position="floating">Processor</ion-label>
+                <ion-input
+                  type="string"
+                  formControlName="processor"
+                ></ion-input>
+              </ion-item>
+            </ion-list>
+          </ng-template>
+        </form>
+        <ion-button
+          type="submit"
+          expand="full"
+          (click)="onSubmit()"
+          [disabled]="addNewItemForm.invalid || productDetailForm.invalid"
+          >Save Item</ion-button
+        >
       </ion-col>
     </ion-row>
   </ion-grid>

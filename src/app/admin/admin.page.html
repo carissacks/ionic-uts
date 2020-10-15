@@ -12,28 +12,39 @@
   </ion-toolbar>
 </ion-header>
 
-
 <ion-content>
   <ion-grid>
     <ion-row class="ion-justify-content-center">
       <ion-col size="12" size-md="8">
         <ion-list>
-          <ion-item-sliding *ngFor="let item of items" lines="inset" #slidingItem>
+          <ion-item-sliding
+            *ngFor="let item of items"
+            lines="inset"
+            #slidingItem
+          >
             <ion-item-options side="start">
-              <ion-item-option color="primary">
-                <ion-icon name="create" slot="icon-only" [routerLink]="['/edit/',item.id]">
-                </ion-icon>
+              <ion-item-option
+                color="primary"
+                [routerLink]="['./edit/',item.id]"
+              >
+                <ion-icon name="create" slot="icon-only"> </ion-icon>
               </ion-item-option>
             </ion-item-options>
             <ion-item-options side="end">
-              <ion-item-option color="danger" (click)="showDeleteAlert(item, slidingItem)">
-                <ion-icon name="trash" slot="icon-only">
-                </ion-icon>
+              <ion-item-option
+                color="danger"
+                (click)="showDeleteAlert(item, slidingItem)"
+              >
+                <ion-icon name="trash" slot="icon-only"> </ion-icon>
               </ion-item-option>
             </ion-item-options>
             <ion-item [routerLink]="['../detail/',item.id]">
               <ion-thumbnail slot="start">
-                <ion-img width="200" height="200" [src]="item.images[0]"></ion-img>
+                <ion-img
+                  width="200"
+                  height="200"
+                  [src]="item.images[0]"
+                ></ion-img>
               </ion-thumbnail>
               <ion-label>
                 <h3>{{item.brand + ' '+item.model}}</h3>

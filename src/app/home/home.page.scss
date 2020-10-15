@@ -1,12 +1,18 @@
-img{
-    height: 25vw;
-    width: 'auto';
-    object-fit: 'contain';
-    text-align: center;
-    margin-left: auto;
-    margin-right: auto;
+img {
+  height: 25vw;
+  width: 'auto';
+  object-fit: 'contain';
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-h1,h2,h3{
-    color: black
+h1,
+h2,
+h3 {
+  color: black;
+}
+
+ion-card {
+  margin: 8px;
 }

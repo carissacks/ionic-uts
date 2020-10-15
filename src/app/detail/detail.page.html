@@ -11,7 +11,7 @@
   <ion-grid class="ion-padding">
     <ion-row class="ion-justify-content-center ion-align-items-center">
       <ion-col size="12" size-md="5">
-        <ion-slides [pager]="true"  [options]="sliderOptions">
+        <ion-slides [pager]="true"  [options]="sliderOptions" class="ion-align-items-center ion-justify-content-center">
           <ion-slide *ngFor="let image of item.images">
               <img src={{image}} />
           </ion-slide>
@@ -28,7 +28,7 @@
           </ion-item>
           <ion-item>
             <ion-label>
-              <h2 class="ion-padding-bottom">Additional Information</h2>
+              <h2 class="ion-padding-bottom">Product Detail</h2>
               <p [innerHTML] = 'content'></p>
             </ion-label>
           </ion-item>

@@ -8,7 +8,7 @@ type BaseItem = {
   type: 'CPU' | 'RAM' | 'MOTHERBOARD' | 'GPU';
 };
 
-type Cpu = BaseItem & {
+export type Cpu = BaseItem & {
   type: 'CPU';
   baseClock: number;
   boostClock: number;
@@ -16,18 +16,18 @@ type Cpu = BaseItem & {
   thread: number;
 };
 
-type Ram = BaseItem & {
+export type Ram = BaseItem & {
   type: 'RAM';
   speed: number;
   size: number;
 };
 
-type MotherBoard = BaseItem & {
+export type MotherBoard = BaseItem & {
   type: 'MOTHERBOARD';
   chipset: string;
   processor: Array<string>;
 };
 
-type Gpu = BaseItem & { type: 'GPU' };
+export type Gpu = BaseItem & { type: 'GPU' };
 
 export type Item = Cpu | Gpu | Ram | MotherBoard;
