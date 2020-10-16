@@ -33,12 +33,12 @@
             </ion-item>
 
             <ion-item>
-              <ion-label position="floating">Images</ion-label>
+              <ion-label position="floating">Images- comma separated</ion-label>
               <ion-input type="text" formControlName="images"></ion-input>
             </ion-item>
 
             <ion-item>
-              <ion-label position="floating">Price</ion-label>
+              <ion-label position="floating">Price- in Rp</ion-label>
               <ion-input type="number" formControlName="price"></ion-input>
             </ion-item>
 
@@ -55,11 +55,11 @@
           >
           <ion-list *ngIf="selectedType==='CPU'; else ram">
             <ion-item>
-              <ion-label position="floating">Base Clock</ion-label>
+              <ion-label position="floating">Base Clock- in GHz</ion-label>
               <ion-input type="number" formControlName="baseClock"></ion-input>
             </ion-item>
             <ion-item>
-              <ion-label position="floating">Boost Clock</ion-label>
+              <ion-label position="floating">Boost Clock- in GHz</ion-label>
               <ion-input type="number" formControlName="boostClock"></ion-input>
             </ion-item>
             <ion-item>
@@ -75,11 +75,11 @@
           <ng-template #ram>
             <ion-list *ngIf="selectedType==='RAM'; else motherboard">
               <ion-item>
-                <ion-label position="floating">Speed</ion-label>
+                <ion-label position="floating">Speed- in MHz</ion-label>
                 <ion-input type="number" formControlName="speed"></ion-input>
               </ion-item>
               <ion-item>
-                <ion-label position="floating">Size</ion-label>
+                <ion-label position="floating">Size - in Gb</ion-label>
                 <ion-input type="number" formControlName="size"></ion-input>
               </ion-item>
             </ion-list>
@@ -104,7 +104,7 @@
         <ion-button
           type="submit"
           expand="full"
-          (click)="onSubmit()"
+          (click)="showAddAlert()"
           [disabled]="addNewItemForm.invalid || productDetailForm.invalid"
           >Save Item</ion-button
         >

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { NavController } from '@ionic/angular';
+import { AlertController, NavController } from '@ionic/angular';
 import { Item } from 'src/app/item.model';
 import { ItemsService } from 'src/app/items.service';
 
@@ -22,7 +22,8 @@ export class AddItemPage implements OnInit {
 
   constructor(
     private itemsService: ItemsService,
-    private navCtrl: NavController
+    private navCtrl: NavController,
+    private alertCtrl: AlertController
   ) {}
 
   ngOnInit() {
@@ -122,11 +123,23 @@ export class AddItemPage implements OnInit {
   onSubmit() {
     const { images, ...otherBasicProps } = this.addNewItemForm.value;
     this.itemsService.addItem({
+      id: '',
       ...otherBasicProps,
       ...this.productDetailForm.value,
-      id: '0',
       images: images.split(','),
     });
     this.navCtrl.back();
+  }
+
+  async showAddAlert() {
+    const alert = await this.alertCtrl.create({
+      header: 'Add Item',
+      message: 'Are you sure you want to add this item?',
+      buttons: [
+        { text: 'Cancel' },
+        { text: 'Add', handler: () => this.onSubmit() },
+      ],
+    });
+    await alert.present();
   }
 }

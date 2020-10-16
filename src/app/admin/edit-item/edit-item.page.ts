@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { NavController } from '@ionic/angular';
+import { AlertController, NavController } from '@ionic/angular';
 import { Item } from 'src/app/item.model';
 import { ItemsService } from 'src/app/items.service';
 
@@ -25,7 +25,8 @@ export class EditItemPage implements OnInit {
   constructor(
     private itemsService: ItemsService,
     private navCtrl: NavController,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private alertCtrl: AlertController
   ) {}
 
   ngOnInit() {
@@ -132,5 +133,17 @@ export class EditItemPage implements OnInit {
       images: images.split(','),
     });
     this.navCtrl.back();
+  }
+
+  async showEditAlert() {
+    const alert = await this.alertCtrl.create({
+      header: 'Edit Item',
+      message: 'Are you sure you want to save this current update?',
+      buttons: [
+        { text: 'Cancel' },
+        { text: 'Edit', handler: () => this.onSubmit() },
+      ],
+    });
+    await alert.present();
   }
 }

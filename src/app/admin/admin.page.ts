@@ -10,6 +10,7 @@ import { ItemsService } from '../items.service';
 })
 export class AdminPage implements OnInit {
   items: Array<Item>;
+  noItem = false;
   constructor(
     private itemsService: ItemsService,
     private alertCtrl: AlertController,
@@ -23,12 +24,17 @@ export class AdminPage implements OnInit {
   }
   ionViewWillEnter() {
     this.getData();
+    if (this.items.length < 1) {
+      this.noItem = true;
+    } else {
+      this.noItem = false;
+    }
   }
 
   async showToast(name: string) {
     const toast = await this.toastCtrl.create({
       message: `${name} is removed successfully.`,
-      color: 'success',
+      color: 'secondary',
       duration: 3000,
     });
     toast.present();
