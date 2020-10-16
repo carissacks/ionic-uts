@@ -22,7 +22,6 @@ export class DetailPage implements OnInit {
 
   ngOnInit() {
     const itemId = this.activatedRoute.snapshot.params.id;
-    console.log(itemId);
     this.item = this.itemsService.getItem(itemId);
 
     const { id, brand, model, price, stock, images, ...otherProps } = this.item;

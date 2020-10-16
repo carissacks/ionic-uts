@@ -143,7 +143,6 @@ export class ItemsService {
 
   addItem(item: Item) {
     const id: string = item.type[0] + (this.items.length + 1);
-    console.log(item);
     const objItem: Item = { ...item, id };
     this.items.push(objItem);
   }
@@ -153,9 +152,7 @@ export class ItemsService {
   }
 
   editItem(item: Item) {
-    console.log(item);
     const index = this.items.findIndex(({ id }) => id === item.id);
     this.items[index] = item;
-    console.log(this.items[index]);
   }
 }
