@@ -15,43 +15,57 @@
 <ion-content color="light">
   <ion-grid>
     <ion-row class="ion-justify-content-center">
-      <ion-col size="12" size-md="8">
+      <ion-col
+        size="12"
+        size-md="8"
+        *ngIf="noItem; else showItem
+        "
+      >
         <ion-list>
-          <ion-item-sliding
-            *ngFor="let item of items"
-            lines="inset"
-            #slidingItem
-          >
-            <ion-item-options side="start">
-              <ion-item-option
-                color="secondary"
-                [routerLink]="['./edit/',item.id]"
-              >
-                <ion-icon name="create" slot="icon-only"> </ion-icon>
-              </ion-item-option>
-            </ion-item-options>
-            <ion-item-options side="end">
-              <ion-item-option color="danger" (click)="showDeleteAlert(item)">
-                <ion-icon name="trash" slot="icon-only"> </ion-icon>
-              </ion-item-option>
-            </ion-item-options>
-            <ion-item [routerLink]="['../detail/',item.id]">
-              <ion-thumbnail slot="start">
-                <ion-img
-                  width="200"
-                  height="200"
-                  [src]="item.images[0]"
-                ></ion-img>
-              </ion-thumbnail>
-              <ion-label>
-                <h3>{{item.brand + ' '+item.model}}</h3>
-                <p>{{item.price | currency:'Rp'}}</p>
-                <p>Available : {{item.stock}}</p>
-              </ion-label>
-            </ion-item>
-          </ion-item-sliding>
+          <ion-item lines="none">
+            <ion-label>No item</ion-label>
+          </ion-item>
         </ion-list>
       </ion-col>
+      <ng-template #showItem>
+        <ion-col size="12" size-md="8">
+          <ion-list>
+            <ion-item-sliding
+              *ngFor="let item of items"
+              lines="inset"
+              #slidingItem
+            >
+              <ion-item-options side="start">
+                <ion-item-option
+                  color="secondary"
+                  [routerLink]="['./edit/',item.id]"
+                >
+                  <ion-icon name="create" slot="icon-only"> </ion-icon>
+                </ion-item-option>
+              </ion-item-options>
+              <ion-item-options side="end">
+                <ion-item-option color="danger" (click)="showDeleteAlert(item)">
+                  <ion-icon name="trash" slot="icon-only"> </ion-icon>
+                </ion-item-option>
+              </ion-item-options>
+              <ion-item [routerLink]="['../detail/',item.id]">
+                <ion-thumbnail slot="start">
+                  <ion-img
+                    width="200"
+                    height="200"
+                    [src]="item.images[0]"
+                  ></ion-img>
+                </ion-thumbnail>
+                <ion-label>
+                  <h3>{{item.brand + ' '+item.model}}</h3>
+                  <p>{{item.price | currency:'Rp'}}</p>
+                  <p>Available : {{item.stock}}</p>
+                </ion-label>
+              </ion-item>
+            </ion-item-sliding>
+          </ion-list>
+        </ion-col>
+      </ng-template>
     </ion-row>
   </ion-grid>
 </ion-content>

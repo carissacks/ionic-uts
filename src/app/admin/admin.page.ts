@@ -21,14 +21,14 @@ export class AdminPage implements OnInit {
 
   getData() {
     this.items = this.itemsService.getAllItems();
-  }
-  ionViewWillEnter() {
-    this.getData();
     if (this.items.length < 1) {
       this.noItem = true;
     } else {
       this.noItem = false;
     }
+  }
+  ionViewWillEnter() {
+    this.getData();
   }
 
   async showToast(name: string) {
