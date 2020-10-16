@@ -33,8 +33,8 @@ export class AdminPage implements OnInit {
 
   async showToast(name: string) {
     const toast = await this.toastCtrl.create({
-      message: `${name} is removed successfully.`,
-      color: 'secondary',
+      message: `${name} is successfully removed.`,
+      color: 'danger',
       duration: 3000,
     });
     toast.present();

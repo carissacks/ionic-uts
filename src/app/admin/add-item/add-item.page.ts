@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { AlertController, NavController } from '@ionic/angular';
+import {
+  AlertController,
+  NavController,
+  ToastController,
+} from '@ionic/angular';
 import { Item } from 'src/app/item.model';
 import { ItemsService } from 'src/app/items.service';
 
@@ -23,7 +27,8 @@ export class AddItemPage implements OnInit {
   constructor(
     private itemsService: ItemsService,
     private navCtrl: NavController,
-    private alertCtrl: AlertController
+    private alertCtrl: AlertController,
+    private toastCtrl: ToastController
   ) {}
 
   ngOnInit() {
@@ -87,15 +92,11 @@ export class AddItemPage implements OnInit {
     this.mbFormGroup = new FormGroup({
       chipset: new FormControl(null, {
         updateOn: 'change',
-        validators: this.selectedType === 'MOTHERBOARD' && [
-          Validators.required,
-        ],
+        validators: [Validators.required],
       }),
       processor: new FormControl(null, {
         updateOn: 'change',
-        validators: this.selectedType === 'MOTHERBOARD' && [
-          Validators.required,
-        ],
+        validators: [Validators.required],
       }),
     });
 
@@ -128,6 +129,7 @@ export class AddItemPage implements OnInit {
       ...this.productDetailForm.value,
       images: images.split(','),
     });
+    this.showToast();
     this.navCtrl.back();
   }
 
@@ -141,5 +143,14 @@ export class AddItemPage implements OnInit {
       ],
     });
     await alert.present();
+  }
+
+  async showToast() {
+    const toast = await this.toastCtrl.create({
+      message: `New item is successfully added.`,
+      color: 'secondary',
+      duration: 3000,
+    });
+    toast.present();
   }
 }
